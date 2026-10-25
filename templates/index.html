@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JEE Subject Tracker</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header class="topbar">
+        <div>
+            <h1>
+                Subject Tracker
+                <span id="overall-progress">0%</span>
+            </h1>
+            <div class="progress">
+                <span id="overall-bar"></span>
+            </div>
+        </div>
+
+        <div class="countdown">
+            <small>Time until 20 January 2027</small>
+            <strong id="countdown">Loading...</strong>
+        </div>
+
+        <button onclick="resetProgress()">Reset</button>
+    </header>
+
+    <section class="dashboard-cards">
+        <div class="stat-card">
+            <span>Days Left</span>
+            <strong id="days-card">--</strong>
+        </div>
+        <div class="stat-card">
+            <span>Overall Progress</span>
+            <strong id="progress-card">0%</strong>
+        </div>
+        <div class="stat-card">
+            <span>Study Hours</span>
+            <strong id="hours-card">0h</strong>
+        </div>
+        <div class="stat-card">
+            <span>Selected Goals</span>
+            <strong id="goals-card">0</strong>
+        </div>
+        <div class="stat-card">
+            <span>Revised Chapters</span>
+            <strong id="revised-card">0</strong>
+        </div>
+    </section>
+
+    <section class="subject-overview">
+        <h2>Subject Progress</h2>
+        <div id="subject-summary"></div>
+    </section>
+
+    <section class="chapter-controls">
+        <input
+            id="chapter-search"
+            type="search"
+            placeholder="Search chapters...">
+
+        <select id="subject-filter">
+            <option value="All">All Subjects</option>
+            <option value="Physics">Physics</option>
+            <option value="Chemistry">Chemistry</option>
+            <option value="Maths">Maths</option>
+        </select>
+
+        <select id="status-filter">
+            <option value="All">All Status</option>
+            <option value="0">Not Started</option>
+            <option value="1">In Progress</option>
+            <option value="2">Practiced</option>
+            <option value="3">Revised</option>
+            <option value="4">Completed</option>
+        </select>
+    </section>
+
+    <main class="tracker-layout">
+        <section class="left-time-panel">
+            <h2>Study Session</h2>
+
+            <input
+                id="session-title"
+                type="text"
+                placeholder="Session title">
+
+            <select id="timer-chapter"></select>
+
+            <input id="session-date" type="date">
+
+            <div id="timer-display">00:00:00</div>
+
+            <button onclick="startTimer()">Start</button>
+            <button onclick="stopTimer()">Stop & Save</button>
+
+            <p id="session-message"></p>
+        </section>
+
+        <div id="subjects"></div>
+
+        <aside>
+            <section class="progress-panel">
+                <h2>Selected Goals</h2>
+
+                <div id="progress-circle" class="progress-circle">
+                    <strong id="circle-percent">0%</strong>
+                    <small>completed</small>
+                </div>
+
+                <div id="subject-legend" class="subject-legend"></div>
+            </section>
+        </aside>
+    </main>
+
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
